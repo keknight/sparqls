@@ -1,0 +1,26 @@
+
+PREFIX director: <http://data.linkedmdb.org/resource/director/>
+PREFIX movie: <http://data.linkedmdb.org/resource/movie/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ontology: <http://dbpedia.org/ontology/>
+PREFIX : <http://dbpedia.org/resource/>
+
+SELECT ?dbp ?lmdb
+WHERE {
+	{
+	SERVICE <http://data.linkedmdb.org/sparql>
+		{
+		?lmdb_film movie:director director:9744 .
+		?lmdb_film rdfs:label ?lmdb .
+		}
+	}
+	UNION
+	{
+	SERVICE <http://dbpedia.org/sparql>
+		{
+		?dbp_film ontology:director :René_Laloux .
+		?dbp_film rdfs:label ?dbp .
+		FILTER (langMatches(lang(?dbp), "en"))
+		}
+	}
+}

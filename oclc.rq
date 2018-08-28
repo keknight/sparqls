@@ -1,0 +1,39 @@
+PREFIX bio: <http://purl.org/vocab/bio/0.1/&gt>
+PREFIX blterms: <http://www.bl.uk/schemas/bibliographic/blterms#&gt>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#&gt>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#&gt>
+PREFIX org: <http://www.w3.org/ns/org#&gt>
+PREFIX owl: <http://www.w3.org/2002/07/owl#&gt>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#&gt>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#&gt>
+
+PREFIX bibo: <http://purl.org/ontology/bibo/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX isbd: <http://iflastandards.info/ns/isbd/elements/>
+PREFIX owlt: <http://www.w3.org/2006/time#>
+PREFIX rda: <http://rdvocab.info/Elements/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?book ?isbn ?title ?year 
+WHERE {
+	{
+	SERVICE <http://bnb.data.bl.uk/sparql>
+	{
+  ?book dcterms:creator ?author;
+        bibo:isbn10 ?isbn;
+        dcterms:title ?title;
+        dcterms:publisher ?publication.
+
+  ?publication rdfs:label ?agent;
+       dcterms:issued ?time.
+
+  ?agent rdfs:label "Elsevier".
+  ?time dcterms:issued "2011".
+}
+}
+}
+LIMIT 50
+		

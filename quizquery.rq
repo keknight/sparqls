@@ -1,0 +1,11 @@
+#filename quizquery.rq
+
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX books: <http://example.org/ns/book#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?title
+WHERE {
+{?doi dc:audience "publishing"}
+UNION
+{?doi dc:inLanguage "en".}
+}

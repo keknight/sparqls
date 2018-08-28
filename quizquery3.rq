@@ -1,0 +1,10 @@
+#filename quizquery3.rq
+
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX books: <http://example.org/ns/book#>
+PREFIX schema: <http://schema.org/>
+SELECT DISTINCT ?oclc ?title
+WHERE {
+?oclc books:isbn "1608454312".
+?oclc schema:name ?title .
+}

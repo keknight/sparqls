@@ -1,0 +1,13 @@
+PREFIX dbpedia: <http://dbpedia.org/property/>
+PREFIX schema: <http://schema.org/>
+SELECT ?o 
+
+WHERE {
+{
+SERVICE <http://www.worldcat.org/>
+{
+?entity schema:exampleOfWork ?isbn .
+?isbn ?p ?o}
+}
+}
+LIMIT 10
